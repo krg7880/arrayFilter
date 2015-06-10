@@ -1,17 +1,23 @@
 var noflo = require('noflo');
 
-exports.getComponent = function () {
-  var c = new noflo.Component();
+exports.getComponent = function() {
+  var component = new noflo.Component();
+  component.description = "This is a test component";
 
-  c.inPorts.add('in', function (event, payload) {
-    if (event !== 'data') {
-      return;
+  component.inPorts.add('in', {datatype: 'array'}, function(e, payload) {
+    switch (e) {
+      case 'data':
+        var first = payload.pop();
+        console.log(first);
+
+        return component.outPorts.out.send(payload);
+
+       default: 
+        console.log(e, payload); 
     }
-    // Do something with the packet, then
-    payload.pop();
-    
-    c.outPorts.out.send(payload);
   });
-  c.outPorts.add('out');
-  return c;
+
+  component.outPorts.add('out', {datatype: 'array'});
+
+  return component;
 };

@@ -8,6 +8,41 @@
     "inports": {},
     "outports": {},
     "groups": [],
-    "processes": {},
-    "connections": []
+    "processes": {
+        "prompts/Alert_6e2qb": {
+            "component": "prompts/Alert",
+            "metadata": {
+                "label": "prompts/Alert",
+                "x": 144,
+                "y": 36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "arrayFilter/filter_8bu3r": {
+            "component": "arrayFilter/filter",
+            "metadata": {
+                "label": "arrayFilter/filter",
+                "x": 36,
+                "y": 36,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "arrayFilter/filter_8bu3r",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "prompts/Alert_6e2qb",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        }
+    ]
 }
